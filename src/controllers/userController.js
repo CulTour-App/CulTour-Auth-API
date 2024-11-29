@@ -1,7 +1,6 @@
 const admin = require('firebase-admin');
 const { getAuth } = require('firebase-admin/auth');
 
-// Get user profile
 exports.getUserProfile = async (req, res) => {
   try {
     const uid = req.user.uid;
@@ -21,7 +20,6 @@ exports.getUserProfile = async (req, res) => {
   }
 };
 
-// Update user profile
 exports.updateUserProfile = async (req, res) => {
   try {
     const uid = req.user.uid;
@@ -44,7 +42,6 @@ exports.updateUserProfile = async (req, res) => {
   }
 };
 
-// Delete user account
 exports.deleteUserAccount = async (req, res) => {
   try {
     const uid = req.user.uid;
