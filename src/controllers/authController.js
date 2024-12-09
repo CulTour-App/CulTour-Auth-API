@@ -31,6 +31,7 @@ exports.login = async (req, res) => {
       );
     }
 
+    // Verify credentials with Firebase REST API
     const response = await fetch(
       `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.FIREBASE_API_KEY}`,
       {
@@ -45,6 +46,7 @@ exports.login = async (req, res) => {
       throw new Error(data.error?.message || 'Authentication failed');
     }
 
+    // Get user info
     const userRecord = await getAuth().getUserByEmail(email);
 
     res.status(200).json(formatResponse(true, {

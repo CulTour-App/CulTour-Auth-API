@@ -6,9 +6,11 @@ require('./src/config/firebaseConfig');
 
 const app = express();
 
+// Allow all origins during development
 app.use(cors());
 app.use(express.json());
 
+// Middleware debugging
 app.use((req, _res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
   console.log('Request body:', req.body);
@@ -21,6 +23,7 @@ app.get('/', (_req, res) => {
 
 app.use('/auth', authRoutes);
 
+// Middleware error handling
 app.use((err, _req, res, _next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Something broke!' });

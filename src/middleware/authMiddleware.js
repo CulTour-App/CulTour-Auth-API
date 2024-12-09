@@ -3,12 +3,15 @@ const admin = require('firebase-admin');
 
 const verifyToken = async (req, res, next) => {
   try {
+    // Check if Authorization header exists
     if (!req.headers.authorization) {
       return res.status(403).json({ error: 'No authorization header' });
     }
 
+    // Trim whitespace and split with a space
     const [bearer, idToken] = req.headers.authorization.trim().split(' ');
 
+    // Additional checks
     if (bearer !== 'Bearer' || !idToken) {
       return res.status(403).json({ error: 'Invalid token format' });
     }
